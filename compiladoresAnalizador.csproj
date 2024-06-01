@@ -48,6 +48,8 @@
   <ItemGroup>
     <Compile Include="controlador\Controlador.cs" />
     <Compile Include="modelo\modeloAnalizadorLexico.cs" />
+    <Compile Include="modelo\modeloAnalizadorSintactico.cs" />
+    <Compile Include="modelo\Token.cs" />
     <Compile Include="vista\VistaPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>

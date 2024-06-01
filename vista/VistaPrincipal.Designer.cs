@@ -29,29 +29,20 @@
         private void InitializeComponent()
         {
             this.btnAnalizar = new System.Windows.Forms.Button();
-            this.txtRespuesta = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtCodigo = new System.Windows.Forms.TextBox();
+            this.txtErrores = new System.Windows.Forms.TextBox();
+            this.lstTokens = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // btnAnalizar
             // 
-            this.btnAnalizar.Location = new System.Drawing.Point(293, 404);
+            this.btnAnalizar.Location = new System.Drawing.Point(427, 519);
             this.btnAnalizar.Name = "btnAnalizar";
             this.btnAnalizar.Size = new System.Drawing.Size(125, 23);
             this.btnAnalizar.TabIndex = 0;
             this.btnAnalizar.Text = "Analizar";
             this.btnAnalizar.UseVisualStyleBackColor = true;
-            // 
-            // txtRespuesta
-            // 
-            this.txtRespuesta.Location = new System.Drawing.Point(12, 190);
-            this.txtRespuesta.Multiline = true;
-            this.txtRespuesta.Name = "txtRespuesta";
-            this.txtRespuesta.ReadOnly = true;
-            this.txtRespuesta.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtRespuesta.Size = new System.Drawing.Size(409, 208);
-            this.txtRespuesta.TabIndex = 1;
             // 
             // label1
             // 
@@ -68,17 +59,36 @@
             this.txtCodigo.Multiline = true;
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtCodigo.Size = new System.Drawing.Size(406, 159);
+            this.txtCodigo.Size = new System.Drawing.Size(540, 159);
             this.txtCodigo.TabIndex = 3;
+            // 
+            // txtErrores
+            // 
+            this.txtErrores.Location = new System.Drawing.Point(12, 373);
+            this.txtErrores.Multiline = true;
+            this.txtErrores.Name = "txtErrores";
+            this.txtErrores.ReadOnly = true;
+            this.txtErrores.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtErrores.Size = new System.Drawing.Size(540, 116);
+            this.txtErrores.TabIndex = 4;
+            // 
+            // lstTokens
+            // 
+            this.lstTokens.FormattingEnabled = true;
+            this.lstTokens.Location = new System.Drawing.Point(12, 218);
+            this.lstTokens.Name = "lstTokens";
+            this.lstTokens.Size = new System.Drawing.Size(540, 121);
+            this.lstTokens.TabIndex = 5;
             // 
             // VistaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(435, 554);
+            this.ClientSize = new System.Drawing.Size(564, 554);
+            this.Controls.Add(this.lstTokens);
+            this.Controls.Add(this.txtErrores);
             this.Controls.Add(this.txtCodigo);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtRespuesta);
             this.Controls.Add(this.btnAnalizar);
             this.Name = "VistaPrincipal";
             this.Text = "Analizador Lexico";
@@ -90,9 +100,10 @@
         #endregion
 
         public System.Windows.Forms.Button btnAnalizar;
-        public System.Windows.Forms.TextBox txtRespuesta;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.TextBox txtCodigo;
+        public System.Windows.Forms.TextBox txtErrores;
+        public System.Windows.Forms.ListBox lstTokens;
     }
 }
 

@@ -1,30 +1,24 @@
 ﻿using compiladoresAnalizador.modelo;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace compiladoresAnalizador.controlador
 {
     internal class Controlador
     {
-        modeloAnalizadorLexico AnalizadorLexico;
+        AnalizadorLexico AnalizadorLexico;
         VistaPrincipal VistaAnalizador;
 
-        public Controlador(modeloAnalizadorLexico analizadorLexico, VistaPrincipal vistaAnalizador)
+        public Controlador(AnalizadorLexico analizadorLexico, VistaPrincipal vistaAnalizador)
         {
             AnalizadorLexico = analizadorLexico;
             VistaAnalizador = vistaAnalizador;
-
-
 
             vistaAnalizador.btnAnalizar.Click += clickBoton;
             vistaAnalizador.FormClosing += vistaCerrada;
 
             vistaAnalizador.Show();
-
         }
 
         private void vistaCerrada(object sender, FormClosingEventArgs e)
@@ -34,22 +28,36 @@ namespace compiladoresAnalizador.controlador
 
         private void clickBoton(object sender, EventArgs e)
         {
-            if (sender ==VistaAnalizador.btnAnalizar)
+            if (sender == VistaAnalizador.btnAnalizar)
             {
-                // Crear una instancia de AnalizadorLexico
-                modeloAnalizadorLexico.AnalizadorLexico analizador = new modeloAnalizadorLexico.AnalizadorLexico();
+                // Limpiar resultados previos
+                VistaAnalizador.lstTokens.Items.Clear();
+                VistaAnalizador.txtErrores.Clear();
 
-                // Obtener el código fuente ingresado por el usuario desde la vista principal
-                string codigoFuente = VistaAnalizador.txtCodigo.Text;
+                // Obtener el código ingresado
+                string codigo = VistaAnalizador.txtCodigo.Text;
 
-                // Realizar el análisis léxico utilizando el analizador léxico
-                string resultadoAnalisis = analizador.Analizar(codigoFuente);
+                try
+                {
+                    // Realizar el análisis léxico
+                    List<Token> tokens = AnalizadorLexico.Analizar(codigo);
 
-                // Mostrar el resultado del análisis léxico en el TextBox de respuesta de la vista principal
-                VistaAnalizador.txtRespuesta.Text = resultadoAnalisis;
+                    // Mostrar los tokens en la lista
+                    foreach (var token in tokens)
+                    {
+                        VistaAnalizador.lstTokens.Items.Add(token.ToString());
+                    }
+
+                    // Realizar el análisis sintáctico
+                    var parser = new AnalizadorSintactico(tokens);
+                    parser.Parse();
+                    VistaAnalizador.txtErrores.Text = "La entrada es sintácticamente correcta.";
+                }
+                catch (Exception ex)
+                {
+                    VistaAnalizador.txtErrores.Text = $"Error: {ex.Message}";
+                }
             }
-
-
         }
     }
 }

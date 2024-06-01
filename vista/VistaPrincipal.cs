@@ -15,6 +15,11 @@ namespace compiladoresAnalizador
         public VistaPrincipal()
         {
             InitializeComponent();
+
+            Controls.Add(txtCodigo);
+            Controls.Add(btnAnalizar);
+            Controls.Add(lstTokens);
+            Controls.Add(txtErrores);
         }
     }
 }
